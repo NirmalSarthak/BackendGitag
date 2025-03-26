@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Define Product Schema
+// Product Schema
 const ProductSchema = new mongoose.Schema({
   IDs: Number,
   Title: String,
@@ -24,16 +24,16 @@ const ProductSchema = new mongoose.Schema({
   ImageUrl: String
 });
 
-// Create Models
+// Models
 const Spices = mongoose.model('spices', ProductSchema);
 const Paintings = mongoose.model('paintings', ProductSchema);
 const Handicrafts = mongoose.model('handicrafts', ProductSchema);
 const Textiles = mongoose.model('textiles', ProductSchema);
 
-// ✅ Helper function to validate ObjectId
+// 
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
-// 🟢 POST - Create Spices
+//  POST - Create Spices
 app.post('/postSpicesdata', async (req, res) => {
   try {
     const newSpices = new Spices(req.body);
@@ -45,7 +45,7 @@ app.post('/postSpicesdata', async (req, res) => {
   }
 });
 
-// 🟢 GET - Fetch Spices
+// GET - Fetch Spices
 app.get('/getSpicesdata', async (req, res) => {
   try {
     const spices = await Spices.find();
@@ -56,7 +56,7 @@ app.get('/getSpicesdata', async (req, res) => {
   }
 });
 
-// 🟢 PUT - Update Spices
+//  PUT - Update Spices
 app.put('/updateSpicesdata/:_id', async (req, res) => {
   const { _id } = req.params;
   if (!isValidObjectId(_id)) {
@@ -80,7 +80,7 @@ app.put('/updateSpicesdata/:_id', async (req, res) => {
   }
 });
 
-// 🟢 DELETE - Remove Spices
+// DELETE - Remove Spices
 app.delete('/deleteSpicesData/:_id', async (req, res) => {
   const { _id } = req.params;
   if (!isValidObjectId(_id)) {
@@ -101,7 +101,7 @@ app.delete('/deleteSpicesData/:_id', async (req, res) => {
   }
 });
 
-// 🟢 POST - Create Paintings
+//  POST - Create Paintings
 app.post('/postPaintingsdata', async (req, res) => {
   try {
     const newPainting = new Paintings(req.body);
@@ -113,7 +113,7 @@ app.post('/postPaintingsdata', async (req, res) => {
   }
 });
 
-// 🟢 GET - Fetch Paintings
+// GET - Fetch Paintings
 app.get('/getPaintingsdata', async (req, res) => {
   try {
     const paintings = await Paintings.find();
@@ -124,7 +124,7 @@ app.get('/getPaintingsdata', async (req, res) => {
   }
 });
 
-// 🟢 PUT - Update Paintings
+// PUT - Update Paintings
 app.put('/updatePaintingsdata/:_id', async (req, res) => {
   const { _id } = req.params;
   if (!isValidObjectId(_id)) {
@@ -148,7 +148,7 @@ app.put('/updatePaintingsdata/:_id', async (req, res) => {
   }
 });
 
-// 🟢 DELETE - Remove Paintings
+// DELETE - Remove Paintings
 app.delete('/deletePaintingsData/:_id', async (req, res) => {
   const { _id } = req.params;
   if (!isValidObjectId(_id)) {
@@ -170,30 +170,30 @@ app.delete('/deletePaintingsData/:_id', async (req, res) => {
 });
 
 
-// 🟢 POST - Create Handicraft
+// POST - Create Handicraft
 app.post('/postHandicraftdata', async (req, res) => {
   try {
-    const newHandicraft = new Handicrafts(req.body); // ✅ Fixed model name
+    const newHandicraft = new Handicrafts(req.body); 
     const savedHandicraft = await newHandicraft.save();
-    res.status(201).json(savedHandicraft); // ✅ Fixed response variable
+    res.status(201).json(savedHandicraft); 
   } catch (error) {
     console.error('❌ Error saving Handicraft data:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
-// 🟢 GET - Fetch Handicraft
+// GET - Fetch Handicraft
 app.get('/getHandicraftdata', async (req, res) => {
   try {
-    const handicraft = await Handicrafts.find(); // ✅ Fixed model name
-    res.status(200).json(handicraft); // ✅ Fixed response variable
+    const handicraft = await Handicrafts.find(); 
+    res.status(200).json(handicraft); 
   } catch (error) {
     console.error('❌ Error fetching Handicraft data:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
-// 🟢 PUT - Update Handicraft
+// PUT - Update Handicraft
 app.put('/updateHandicraftdata/:_id', async (req, res) => {
   const { _id } = req.params;
   if (!isValidObjectId(_id)) {
@@ -217,7 +217,7 @@ app.put('/updateHandicraftdata/:_id', async (req, res) => {
   }
 });
 
-// 🟢 DELETE - Remove Handicraft
+// DELETE - Remove Handicraft
 app.delete('/deleteHandicraftData/:_id', async (req, res) => {
   const { _id } = req.params;
   if (!isValidObjectId(_id)) {
@@ -238,30 +238,30 @@ app.delete('/deleteHandicraftData/:_id', async (req, res) => {
   }
 });
 
-// 🟢 POST - Create Textiles
+//  POST - Create Textiles
 app.post('/postTextilesdata', async (req, res) => {
   try {
-    const newTextile = new Textiles(req.body); // ✅ Corrected model name
+    const newTextile = new Textiles(req.body); 
     const savedTextile = await newTextile.save();
-    res.status(201).json(savedTextile); // ✅ Fixed response variable
+    res.status(201).json(savedTextile);
   } catch (error) {
     console.error('❌ Error saving Textiles data:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
-// 🟢 GET - Fetch Textiles
-app.get('/getTextilesdata', async (req, res) => { // ✅ Fixed route name
+// GET - Fetch Textiles
+app.get('/getTextilesdata', async (req, res) => { 
   try {
-    const textiles = await Textiles.find(); // ✅ Corrected model name
-    res.status(200).json(textiles); // ✅ Corrected response variable
+    const textiles = await Textiles.find(); 
+    res.status(200).json(textiles); 
   } catch (error) {
     console.error('❌ Error fetching Textiles data:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
-// 🟢 PUT - Update Textiles
+//  PUT - Update Textiles
 app.put('/updateTextilesdata/:_id', async (req, res) => {
   const { _id } = req.params;
   if (!isValidObjectId(_id)) {
@@ -285,7 +285,7 @@ app.put('/updateTextilesdata/:_id', async (req, res) => {
   }
 });
 
-// 🟢 DELETE - Remove Textiles
+// DELETE - Remove Textiles
 app.delete('/deleteTextilesData/:_id', async (req, res) => {
   const { _id } = req.params;
   if (!isValidObjectId(_id)) {
