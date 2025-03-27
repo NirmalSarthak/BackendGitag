@@ -149,7 +149,7 @@ app.put('/updatePaintingsdata/:_id', async (req, res) => {
 });
 
 // DELETE - Remove Paintings
-app.delete('/deletePaintingsData/:_id', async (req, res) => {
+app.delete('/deletePaintingData/:_id', async (req, res) => {
   const { _id } = req.params;
   if (!isValidObjectId(_id)) {
     return res.status(400).json({ message: 'Invalid ID format' });
@@ -168,6 +168,7 @@ app.delete('/deletePaintingsData/:_id', async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
 
 
 // POST - Create Handicraft
